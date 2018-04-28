@@ -24,21 +24,38 @@ App = React.createClass({
   },
 
   getGif: function(searchingText, callback) {
-    var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        var data = JSON.parse(xhr.responseText).data;
-        var gif = {
-          url: data.fixed_width_downsampled_url,
-          sourceUrl: data.url
-        };
-        callback(gif);
+    return new Promise(
+      function (resolve, reject) {
+        var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText).data;
+            var gif = {
+              url: data.fixed_width_downsampled_url,
+              sourceUrl: data.url
+            };
+            resolve(this.callback(gif));
+          } else {
+            reject(new Error(
+              `Error on request: ${this.statusText}`
+            ));
+          }
+        }
+        xhr.onerror = function () {
+          reject(new Error(
+            `No connection error: ${this.statusText}`
+          ))
+        }
+        xhr.send();
       }
-    }
-    xhr.send();
+    );
   },
+
+  getGif()
+  .then(response => callback(gif))
+  .catch(error => console.error(`Looks like sth went wrong: ${this.statusText}`)),
 
   render: function() {
     var styles = {
