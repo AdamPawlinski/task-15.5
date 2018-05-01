@@ -24,14 +24,14 @@ Search = React.createClass({
     var styles = {
       fontSize: '1.5em',
       width: '90%',
-      maxWidth: '350px'
+      maxWidth: '400px'
     };
 
     return <input
             type='text'
             onChange={this.handleChange}
             onKeyUp={this.handleKeyUp}
-            placeholder="write down what are you looking for"
+            placeholder="what are you looking for?"
             style={styles}
             value={this.state.searchTerm}
             />

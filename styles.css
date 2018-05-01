@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+
+body {
+  margin: auto;
+  font-family: "Audiowide";
+  width: 600px;
+  background-color: #c9c9c9;
+}
+
+.image { 
+  background-image: url('https://vignette.wikia.nocookie.net/bezsensopedia/images/e/e5/Znak_ze_znakiem_zapytania.png/revision/latest?cb=20101014153752&path-prefix=pl');
+  background-position: center;
+  background-size: cover;
+}
