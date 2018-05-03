@@ -21,13 +21,6 @@ App = React.createClass({
         searchingText: searchingText
       }))
     .catch(error => console.error(`Looks like sth went wrong: ${this.statusText}`))
-    // this.getGif(searchingText, function(gif) {
-    //   this.setState({
-    //     loading: false,
-    //     gif: gif,
-    //     searchingText: searchingText
-    //   });
-    // }.bind(this));
   },
 
   getGif(searchingText, callback) {
